@@ -1,0 +1,10 @@
+@media screen and (max-width: 800px) {
+  .addTodo {
+    width: 36rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .addTodo {
+    width: 30rem;
+  }
+}

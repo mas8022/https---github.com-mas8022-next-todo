@@ -1,0 +1,62 @@
+{
+  "todos": [
+    {
+      "id": "64a2299d-a6db-4d4e-92a2-c78cb8aa7b0c",
+      "todo": "wash the dishes",
+      "todoColor": "#00ff1e",
+      "date": "1/29/2024",
+      "complete": false
+    },
+    {
+      "id": "173dec61-6b06-4efa-8ac7-5c954637a2bd",
+      "todo": "exercise hardly",
+      "todoColor": "#ff0000",
+      "date": "1/29/2024",
+      "complete": false
+    }
+  ],
+  "users": [
+    {
+      "id": "bedeca0b-6446-4222-8772-7389a1b2f937",
+      "fullName": "Shahla Ghasemi",
+      "email": "sh@gmail.com",
+      "CREATE_AT": "1/29/2024"
+    },
+    {
+      "id": "f6ade96c-272e-4c62-8390-cbe50dc1d151",
+      "fullName": "mohammad reza abasi",
+      "email": "dfsad@gmail.com",
+      "CREATE_AT": "1/29/2024"
+    },
+    {
+      "id": "e7ee212b-bf53-4489-a3be-e185b9f3b002",
+      "fullName": "sdfdsad",
+      "email": "sdfgsda@gmail.com",
+      "CREATE_AT": "1/29/2024"
+    },
+    {
+      "id": "37661044-e58c-45d8-9236-474693e0eb06",
+      "fullName": "dhgh",
+      "email": "hgfdhg@gmail.com",
+      "CREATE_AT": "1/29/2024"
+    },
+    {
+      "id": "fa4c32b0-55aa-4e9d-b7ce-813911be1921",
+      "fullName": "sfytstd",
+      "email": "WADQEEQW@gmail.com",
+      "CREATE_AT": "1/29/2024"
+    },
+    {
+      "id": "76c3dab5-297e-40d8-a3e1-f179da7d5c78",
+      "fullName": "GHFDGFDGFD",
+      "email": "DSDFSV@GMAIL.COM",
+      "CREATE_AT": "1/29/2024"
+    },
+    {
+      "id": "a5c4839b-8af6-4520-87ed-2c654e76eab6",
+      "fullName": "FDGSDFIO",
+      "email": "dgoijdioo@gmail.com",
+      "CREATE_AT": "1/29/2024"
+    }
+  ]
+}
