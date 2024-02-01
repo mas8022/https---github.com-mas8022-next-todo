@@ -21,7 +21,7 @@ export default function Todo({ todo, date, todoColor, id, complete }) {
     swal({
       icon: "warning",
       text: "Are You Sure To Complete The Todo",
-      buttons: "ok",
+      buttons: true,
     }).then((res) => {
       if (res) {
         fetch(`http://localhost:3031/todos/${id}`, {
@@ -50,6 +50,7 @@ export default function Todo({ todo, date, todoColor, id, complete }) {
           type: "text",
         },
       },
+      buttons: true,
     }).then((res) => {
       if (res) {
         fetch(`http://localhost:3031/todos/${id}`, {
@@ -75,7 +76,7 @@ export default function Todo({ todo, date, todoColor, id, complete }) {
     swal({
       icon: "warning",
       text: "Are You Sure To Delete The Todo",
-      buttons: "ok",
+      buttons: true,
     }).then((res) => {
       if (res) {
         contextTodo.setAllTodo(newAllTodo);

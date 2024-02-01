@@ -1,20 +1,5 @@
 {
-  "todos": [
-    {
-      "id": "64a2299d-a6db-4d4e-92a2-c78cb8aa7b0c",
-      "todo": "wash the dishes",
-      "todoColor": "#00ff1e",
-      "date": "1/29/2024",
-      "complete": false
-    },
-    {
-      "id": "173dec61-6b06-4efa-8ac7-5c954637a2bd",
-      "todo": "exercise hardly",
-      "todoColor": "#ff0000",
-      "date": "1/29/2024",
-      "complete": false
-    }
-  ],
+  "todo": [],
   "users": [
     {
       "id": "bedeca0b-6446-4222-8772-7389a1b2f937",
@@ -57,6 +42,12 @@
       "fullName": "FDGSDFIO",
       "email": "dgoijdioo@gmail.com",
       "CREATE_AT": "1/29/2024"
+    },
+    {
+      "id": "eb013d45-75e6-4f3c-bb91-432c21642cc2",
+      "fullName": "sadfsa",
+      "email": "dsfds@gmail.com",
+      "CREATE_AT": "1/30/2024"
     }
   ]
 }

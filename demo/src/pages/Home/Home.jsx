@@ -1,8 +1,12 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import Todo from "../../components/Todo";
 import context from "../../context";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+
 export default function Home() {
   const contextHome = useContext(context);
+  const [todoDate, setTodoDate] = useState(new Date());
 
   useEffect(() => {
     fetch("http://localhost:3031/todos")
@@ -27,7 +31,7 @@ export default function Home() {
           id: crypto.randomUUID(),
           todo: contextHome.todo,
           todoColor: contextHome.todoColor,
-          date: new Date().toLocaleDateString(),
+          date: todoDate.toString().slice(0, 15),
           complete: false,
         }),
       }).then((res) => {
@@ -37,6 +41,11 @@ export default function Home() {
         }
       });
     }
+  };
+
+  const setdateHandler = (e) => {
+    let newDate = String(e).slice(0, 15);
+    setTodoDate(newDate);
   };
 
   return (
@@ -62,6 +71,12 @@ export default function Home() {
           type="color"
         />
       </div>
+
+      <Calendar
+        onClickDay={setdateHandler}
+        value={todoDate}
+        onChange={(e) => setTodoDate(e)}
+      />
 
       <div className="showTodosContainer">
         {contextHome.allTodo ? (

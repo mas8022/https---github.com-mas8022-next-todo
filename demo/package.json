@@ -11,8 +11,13 @@
     "server": "json-server --watch db.json --port 3031"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.15.7",
     "json-server": "^1.0.0-alpha.23",
+    "mui": "^0.0.1",
     "react": "^18.2.0",
+    "react-calendar": "^4.8.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.3",
     "sweetalert": "^2.1.2",

@@ -2,7 +2,9 @@ import { useEffect, useContext, useState } from "react";
 import context from "../context";
 import swal from "sweetalert";
 import Swal from "sweetalert2";
+
 const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
 export default function Navbar() {
   const contextNav = useContext(context);
   const [side, setSide] = useState(() => {
@@ -99,7 +101,7 @@ export default function Navbar() {
       title: "Sign up",
       html: `
         <input id="swal-input1" class="swal2-input" placeholder="Type your full name">
-        <input id="swal-input2" class="swal2-input" placeholder="Type your full email">
+        <input id="swal-input2" class="swal2-input" placeholder="Type your email">
       `,
       focusConfirm: true,
       preConfirm: () => {
@@ -144,7 +146,7 @@ export default function Navbar() {
     }
   };
 
-  const logoutHandler = () => {
+  const logoutHandler = async () => {
     swal({
       icon: "warning",
       title: "Log out",
@@ -162,6 +164,18 @@ export default function Navbar() {
         fetch(`http://localhost:3031/users/${userId}`, {
           method: "DELETE",
         });
+
+        
+        const allTodo = await fetch("http://localhost:3031/todos").then((res) =>
+          res.json()
+        );
+        let allIdsTodo = allTodo.map((todo) => (todo = todo.id));
+        await allIdsTodo.forEach(
+          async (id) =>
+            await fetch(`http://localhost:3031/todos/${id}`, {
+              method: "DELETE",
+            })
+        );
       }
     });
   };

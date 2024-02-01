@@ -348,19 +348,19 @@ body {
 .sideBarActive {
   right: 0;
 }
-.sideBar__profile{
+.sideBar__profile {
   width: 13rem;
   height: 13rem;
   border-radius: 50%;
   background: var(--second-color);
 }
-.sideBar__userName{
+.sideBar__userName {
   font-size: 1.5rem;
   color: var(--text-color);
   text-align: center;
   line-height: 2rem;
 }
-.sideBar__process{
+.sideBar__process {
   width: 100%;
   height: 10rem;
   display: flex;
@@ -391,16 +391,94 @@ body {
   transition: all linear 0.1s;
   color: var(--text-color);
 }
-.editProfile:active{
+.editProfile:active {
   scale: 98%;
 }
-.logout{
+.logout {
   width: 5rem;
   height: 5rem;
   margin-top: 3rem;
   transition: all linear 0.1s;
   cursor: pointer;
 }
-.logout:active{
+.logout:active {
   transform: translateY(-3px);
+}
+.react-calendar {
+  padding: 1.5rem 2rem 3rem 2rem;
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px -7px #000;
+  border: 1px;
+  background: var(--second-color);
+  color: var(--third-color);
+}
+.react-calendar__navigation__label__labelText.react-calendar__navigation__label__labelText--from {
+  font-weight: 600;
+  color: var(--third-color);
+  font-size: 1.5rem;
+}
+.react-calendar__month-view__weekdays__weekday abbr {
+  font-size: 12px;
+}
+.react-calendar__tile.react-calendar__month-view__days__day.react-calendar__month-view__days__day--weekend
+  abbr {
+  font-size: 12px;
+}
+.react-calendar__tile.react-calendar__month-view__days__day abbr {
+  font-size: 12px;
+}
+.react-calendar__tile.react-calendar__month-view__days__day.react-calendar__month-view__days__day--weekend,
+.react-calendar__tile.react-calendar__month-view__days__day {
+  border-radius: 20px;
+}
+.react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus {
+  background: var(--third-color);
+}
+.react-calendar__tile--active {
+  background: var(--third-color);
+  color: white;
+}
+.react-calendar__tile--now {
+  background: var(--first-color);
+  color: var(--text-color);
+}
+.react-calendar__navigation button {
+  min-width: 44px;
+  background: none;
+  border-radius: 20px;
+  transition: all linear 0.1s;
+}
+.react-calendar__tile.react-calendar__month-view__days__day{
+  transition: all linear 0.1s;
+  cursor: pointer;
+}
+.react-calendar__tile.react-calendar__month-view__days__day:hover{
+  background:rgba(128, 128, 128, 0.372);
+  color: #ffffff;
+}
+.react-calendar__year-view__months__month:hover{
+background: #000;
+}
+.react-calendar__year-view__months__month:hover{
+  background: #000;
+}
+#swal2-title{
+  font-size: 3rem;
+}
+.swal2-input{
+  width: 85% ;
+}
+.swal2-popup.swal2-modal.swal2-show{
+  width: 60%;
+}
+.swal2-confirm.swal2-styled{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 8rem;
+  height: 4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  font-size: 1.6rem;
 }
