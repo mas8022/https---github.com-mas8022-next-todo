@@ -165,7 +165,7 @@ export default function Navbar() {
         <div
           style={{
             background: `url(${
-              profile ? profile : "../../public/images/profile.svg"
+              profile ? profile : "/images/profile.svg"
             })`,
           }}
           className="sideBar__profile image shad"
@@ -189,7 +189,7 @@ export default function Navbar() {
         <img
           onClick={logoutHandler}
           className="image logout"
-          src="../../public/images/logout.svg"
+          src="/images/logout.svg"
           alt="logout button"
         />
       </div>
@@ -211,8 +211,8 @@ export default function Navbar() {
           <img
             src={
               contextNav.them !== "sun"
-                ? "../../public/images/sun.svg"
-                : "../../public/images/moon.svg"
+                ? "/images/sun.svg"
+                : "/images/moon.svg"
             }
             alt="them changer"
           />
@@ -223,12 +223,12 @@ export default function Navbar() {
               onClick={() => setSide((p) => (p = !p))}
               className="navbar__profile"
             >
-              <img src="../../public/images/profile.svg" alt="profile" />
+              <img src="/images/profile.svg" alt="profile" />
             </div>
           </>
         ) : (
           <div onClick={signHandler} className="navbar__profile">
-            <img src="../../public/images/sign.svg" alt="profile" />
+            <img src="/images/sign.svg" alt="profile" />
           </div>
         )}
       </div>

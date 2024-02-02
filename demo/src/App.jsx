@@ -19,24 +19,34 @@ function App() {
   });
   const [allTodo, setAllTodo] = useState(() => {
     const localAllTodo = JSON.parse(localStorage.getItem("allTodo"));
-    return localAllTodo ? localAllTodo : [];
+    return localAllTodo !== undefined &&
+      localAllTodo !== null &&
+      localAllTodo.length
+      ? localAllTodo
+      : [];
   });
+
+  const [allTodoL, setAllTodoL] = useState(() => {
+    const localAllTodo = JSON.parse(localStorage.getItem("allTodoL"));
+    return localAllTodo ? localAllTodo : 0;
+  });
+
+  useEffect(() => {
+    calPercentProgressHandler();
+  }, [allTodoL]);
+
+  useEffect(() => {
+    localStorage.setItem("allTodo", JSON.stringify(allTodo));
+    localStorage.setItem("allTodoL", JSON.stringify(allTodo.length));
+  }, [allTodo]);
 
   useEffect(() => {
     localStorage.setItem("percentProgres", JSON.stringify(percentProgres));
   }, [percentProgres]);
 
   useEffect(() => {
-    localStorage.setItem("allTodo", JSON.stringify(allTodo));
-  }, [allTodo]);
-
-  useEffect(() => {
     localStorage.setItem("them", JSON.stringify(them));
   }, [them]);
-
-  useEffect(() => {
-    calPercentProgressHandler();
-  }, [allTodo.length]);
 
   const calPercentProgressHandler = () => {
     if (allTodo.length) {
@@ -64,6 +74,7 @@ function App() {
         setPercentProgress: setPercentProgress,
         allTodo,
         setAllTodo,
+        setAllTodoL,
       }}
     >
       <div className="App">

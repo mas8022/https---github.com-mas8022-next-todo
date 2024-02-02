@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import Todo from "../../components/Todo";
 import context from "../../context";
 import Calendar from "react-calendar";
@@ -7,10 +7,6 @@ import "react-calendar/dist/Calendar.css";
 export default function Home() {
   const contextHome = useContext(context);
   const [todoDate, setTodoDate] = useState(new Date());
-
-  useEffect(() => {
-    contextHome.setAllTodo(JSON.parse(localStorage.getItem("allTodo")));
-  }, []);
 
   const registerTodo = async () => {
     if (contextHome.todo.trim()) {
@@ -41,7 +37,7 @@ export default function Home() {
         <img
           onClick={registerTodo}
           className="image"
-          src="../../../public/images/plus.svg"
+          src="/images/plus.svg"
           alt="add icon"
         />
         <input
@@ -58,22 +54,23 @@ export default function Home() {
           type="color"
         />
       </div>
-      
+
       <Calendar
         onClickDay={setdateHandler}
         value={todoDate}
         onChange={(e) => setTodoDate(e)}
       />
       <div className="showallTodoContainer">
-        {contextHome.allTodo.length ? (
-          contextHome.allTodo.map((todo, index) => (
-            <Todo key={index} {...todo} />
-          ))
+
+        {contextHome.allTodo !== undefined && contextHome.allTodo !== null && contextHome.allTodo.length ? (
+          contextHome.allTodo.map((todo) => <Todo key={todo.id} {...todo} />)
         ) : (
           <div className="showallTodoContainer__alert_noExist">
             <p>No Exist Todo Here</p>
           </div>
         )}
+
+
       </div>
     </div>
   );

@@ -105,20 +105,20 @@ export default function Todo({ todo, date, todoColor, id, complete }) {
             <img
               onClick={() => completeTodo(id)}
               className="image todo__bottomTodo__btn"
-              src="../../public/images/complete.svg"
+              src="/images/complete.svg"
               alt="complete icon"
             />
           ) : null}
           <img
             onClick={() => editTodo(id)}
             className="image todo__bottomTodo__btn"
-            src="../../public/images/edit.svg"
+            src="/images/edit.svg"
             alt="edit icon"
           />
           <img
             onClick={() => deleteTodo(id)}
             className="image todo__bottomTodo__btn"
-            src="../../public/images/delete.svg"
+            src="/images/delete.svg"
             alt="delete icon"
           />
         </div>
