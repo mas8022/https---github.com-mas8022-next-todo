@@ -155,6 +155,7 @@ export default function Navbar() {
         setFullName("");
         setEmail("");
         setProfile("");
+        contextNav.setPercentProgress(0)
       }
     });
   };
