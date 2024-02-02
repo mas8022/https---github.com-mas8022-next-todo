@@ -177,12 +177,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 999;
 }
 .navbar div {
   cursor: pointer;
   border-radius: 50px;
-  width: 6rem;
-  height: 6rem;
+  width: 5rem;
+  height: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -267,7 +268,7 @@ body {
 .todo__bottomTodo__btn:active {
   transform: translateY(-2px);
 }
-.showTodosContainer {
+.showallTodoContainer {
   width: 100%;
   height: auto;
   display: flex;
@@ -306,7 +307,7 @@ body {
 .todo__bottomTodo__date {
   font-size: 12px;
 }
-.showTodosContainer__alert_noExist {
+.showallTodoContainer__alert_noExist {
   width: auto;
   height: 5em;
   display: flex;
@@ -318,11 +319,11 @@ body {
   border-radius: 20px;
   opacity: 0.5;
 }
-.showTodosContainer__alert_noExist img {
+.showallTodoContainer__alert_noExist img {
   width: 3rem;
   height: 3rem;
 }
-.showTodosContainer__alert_noExist p {
+.showallTodoContainer__alert_noExist p {
   color: var(--text-color);
   font-size: 1.4rem;
 }
@@ -344,6 +345,7 @@ body {
   gap: 2rem;
   padding: 2rem;
   padding-top: 15rem;
+  z-index: 998;
 }
 .sideBarActive {
   right: 0;
@@ -432,7 +434,8 @@ body {
 .react-calendar__tile.react-calendar__month-view__days__day {
   border-radius: 20px;
 }
-.react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus {
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
   background: var(--third-color);
 }
 .react-calendar__tile--active {
@@ -449,30 +452,30 @@ body {
   border-radius: 20px;
   transition: all linear 0.1s;
 }
-.react-calendar__tile.react-calendar__month-view__days__day{
+.react-calendar__tile.react-calendar__month-view__days__day {
   transition: all linear 0.1s;
   cursor: pointer;
 }
-.react-calendar__tile.react-calendar__month-view__days__day:hover{
-  background:rgba(128, 128, 128, 0.372);
+.react-calendar__tile.react-calendar__month-view__days__day:hover {
+  background: rgba(128, 128, 128, 0.372);
   color: #ffffff;
 }
-.react-calendar__year-view__months__month:hover{
-background: #000;
-}
-.react-calendar__year-view__months__month:hover{
+.react-calendar__year-view__months__month:hover {
   background: #000;
 }
-#swal2-title{
+.react-calendar__year-view__months__month:hover {
+  background: #000;
+}
+#swal2-title {
   font-size: 3rem;
 }
-.swal2-input{
-  width: 85% ;
+.swal2-input {
+  width: 85%;
 }
-.swal2-popup.swal2-modal.swal2-show{
+.swal2-popup.swal2-modal.swal2-show {
   width: 60%;
 }
-.swal2-confirm.swal2-styled{
+.swal2-confirm.swal2-styled {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -481,4 +484,10 @@ background: #000;
   font-size: 1rem;
   font-weight: 600;
   font-size: 1.6rem;
+}
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+  background-color: var(--third-color);
+}
+.swal2-file {
+  height: 5rem;
 }

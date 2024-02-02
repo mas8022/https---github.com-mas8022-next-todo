@@ -9,25 +9,43 @@ function App() {
     return localThem ? localThem : "sun";
   });
   const [user, setUser] = useState({});
-  const [allTodo, setAllTodo] = useState([]);
   const [todo, setTodo] = useState("");
   const [todoColor, setTodoColor] = useState("#ff0000");
-  const [percentProgres, setPercentProgres] = useState(0);
+  const [percentProgres, setPercentProgress] = useState(() => {
+    const localPercentProgres = JSON.parse(
+      localStorage.getItem("percentProgres")
+    );
+    return localPercentProgres ? localPercentProgres : 0;
+  });
+  const [allTodo, setAllTodo] = useState(() => {
+    const localAllTodo = JSON.parse(localStorage.getItem("allTodo"));
+    return localAllTodo ? localAllTodo : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("percentProgres", JSON.stringify(percentProgres));
+  }, [percentProgres]);
+
+  useEffect(() => {
+    localStorage.setItem("allTodo", JSON.stringify(allTodo));
+  }, [allTodo]);
 
   useEffect(() => {
     localStorage.setItem("them", JSON.stringify(them));
   }, [them]);
 
   useEffect(() => {
-    calPercentProgresHandler();
+    calPercentProgressHandler();
   }, [allTodo.length]);
 
-  const calPercentProgresHandler = () => {
-    let todoComplete = allTodo.filter((todo) => todo.complete === true);
-    let percentProcess = Math.ceil(
-      (todoComplete.length / allTodo.length) * 100
-    );
-    setPercentProgres(percentProcess);
+  const calPercentProgressHandler = () => {
+    if (allTodo.length) {
+      let todoComplete = allTodo.filter((todo) => todo.complete === true);
+      let percentProcess = Math.ceil(
+        (todoComplete.length / allTodo.length) * 100
+      );
+      setPercentProgress(percentProcess);
+    }
   };
 
   return (
@@ -37,15 +55,15 @@ function App() {
         setUser,
         them,
         setThem,
-        allTodo,
-        setAllTodo,
         todo,
         setTodo,
         todoColor,
         setTodoColor,
-        calPercentProgresHandler,
+        calPercentProgressHandler,
         percentProgres,
-        setPercentProgres,
+        setPercentProgress: setPercentProgress,
+        allTodo,
+        setAllTodo,
       }}
     >
       <div className="App">

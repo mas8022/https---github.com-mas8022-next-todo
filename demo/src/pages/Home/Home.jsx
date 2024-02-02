@@ -9,37 +9,24 @@ export default function Home() {
   const [todoDate, setTodoDate] = useState(new Date());
 
   useEffect(() => {
-    fetch("http://localhost:3031/todos")
-      .then((res) => res.json())
-      .then((data) => contextHome.setAllTodo(data));
+    contextHome.setAllTodo(JSON.parse(localStorage.getItem("allTodo")));
   }, []);
-
-  useEffect(() => {
-    fetch("http://localhost:3031/todos")
-      .then((res) => res.json())
-      .then((data) => contextHome.setAllTodo(data));
-  }, [contextHome.allTodo]);
 
   const registerTodo = async () => {
     if (contextHome.todo.trim()) {
-      await fetch("http://localhost:3031/todos", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+      contextHome.setAllTodo((p) => [
+        ...p,
+        {
           id: crypto.randomUUID(),
           todo: contextHome.todo,
           todoColor: contextHome.todoColor,
           date: todoDate.toString().slice(0, 15),
           complete: false,
-        }),
-      }).then((res) => {
-        if (res.ok) {
-          contextHome.setTodo("");
-          contextHome.setTodoColor("#ff0000");
-        }
-      });
+        },
+      ]);
+
+      contextHome.setTodo("");
+      contextHome.setTodoColor("#ff0000");
     }
   };
 
@@ -71,23 +58,19 @@ export default function Home() {
           type="color"
         />
       </div>
-
+      
       <Calendar
         onClickDay={setdateHandler}
         value={todoDate}
         onChange={(e) => setTodoDate(e)}
       />
-
-      <div className="showTodosContainer">
-        {contextHome.allTodo ? (
-          contextHome.allTodo.map((todo) => <Todo key={todo.id} {...todo} />)
+      <div className="showallTodoContainer">
+        {contextHome.allTodo.length ? (
+          contextHome.allTodo.map((todo, index) => (
+            <Todo key={index} {...todo} />
+          ))
         ) : (
-          <div className="showTodosContainer__alert_noExist">
-            <img
-              className="image"
-              src="../../../public/images/happy.svg"
-              alt="no exist"
-            />
+          <div className="showallTodoContainer__alert_noExist">
             <p>No Exist Todo Here</p>
           </div>
         )}

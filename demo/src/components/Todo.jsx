@@ -4,17 +4,17 @@ import swal from "sweetalert";
 export default function Todo({ todo, date, todoColor, id, complete }) {
   const contextTodo = useContext(context);
 
-  const calPercentProgresHandler = async () => {
-    let allTodo = await fetch("http://localhost:3031/todos").then((res) =>
-      res.json()
-    );
-    let todoComplete = allTodo.filter((todo) => todo.complete === true);
-    console.log(todoComplete);
+  const calPercentProgressHandler = async (newAllTodo) => {
+    if (newAllTodo.length) {
+      let todoComplete = newAllTodo.filter((item) => item.complete === true);
 
-    let percentProcess = Math.ceil(
-      (todoComplete.length / allTodo.length) * 100
-    );
-    contextTodo.setPercentProgres(percentProcess);
+      console.log(todoComplete);
+
+      let percentProcess = await Math.ceil(
+        (todoComplete.length / contextTodo.allTodo.length) * 100
+      );
+      contextTodo.setPercentProgress(percentProcess);
+    }
   };
 
   const completeTodo = async () => {
@@ -22,21 +22,25 @@ export default function Todo({ todo, date, todoColor, id, complete }) {
       icon: "warning",
       text: "Are You Sure To Complete The Todo",
       buttons: true,
-    }).then((res) => {
+    }).then(async (res) => {
       if (res) {
-        fetch(`http://localhost:3031/todos/${id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id,
-            todo,
-            todoColor,
-            date: new Date().toLocaleDateString(),
-            complete: true,
-          }),
-        }).then((res) => res.ok && calPercentProgresHandler());
+        if (contextTodo.allTodo.length) {
+          let newAllTodo = [...contextTodo.allTodo].map((item) => {
+            if (item.id === id) {
+              todo = {
+                id: item.id,
+                todo: item.todo,
+                todoColor: item.todoColor,
+                date: item.date,
+                complete: true,
+              };
+              return todo;
+            }
+            return item;
+          });
+          await contextTodo.setAllTodo(newAllTodo);
+          calPercentProgressHandler(newAllTodo);
+        }
       }
     });
   };
@@ -53,25 +57,29 @@ export default function Todo({ todo, date, todoColor, id, complete }) {
       buttons: true,
     }).then((res) => {
       if (res) {
-        fetch(`http://localhost:3031/todos/${id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id,
-            todo: res,
-            todoColor,
-            date: new Date().toLocaleDateString(),
-            complete: false,
-          }),
+        let newAllTodo = [...contextTodo.allTodo].map((item) => {
+          if (item.id === id) {
+            todo = {
+              id: item.id,
+              todo: res,
+              todoColor: item.todoColor,
+              date: new Date().toLocaleDateString(),
+              complete: false,
+            };
+            return todo;
+          }
+          return item;
         });
+        contextTodo.setAllTodo(newAllTodo);
+        calPercentProgressHandler(newAllTodo);
       }
     });
   };
 
   const deleteTodo = (id) => {
     let newAllTodo = contextTodo.allTodo.filter((todo) => todo.id != id);
+
+   
 
     swal({
       icon: "warning",
@@ -80,15 +88,15 @@ export default function Todo({ todo, date, todoColor, id, complete }) {
     }).then((res) => {
       if (res) {
         contextTodo.setAllTodo(newAllTodo);
-        fetch(`http://localhost:3031/todos/${id}`, {
-          method: "DELETE",
-        });
+        if (!newAllTodo.length) {
+          contextTodo.setPercentProgress(0);
+        }
       }
     });
   };
 
   return (
-    <div style={{ background: `${todoColor}` }} className="todo">
+    <div style={{ background: `${todoColor}` }} className="todo shad">
       <p className={complete ? "todo__text complete" : "todo__text"}>{todo}</p>
       <div className="todo__bottomTodo">
         <p className="todo__bottomTodo__date">{date}</p>

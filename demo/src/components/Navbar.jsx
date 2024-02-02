@@ -71,6 +71,7 @@ export default function Navbar() {
           type: "text",
         },
       },
+      buttons: true,
     }).then(async (res) => {
       if (res) {
         setFullName(res);
@@ -81,6 +82,8 @@ export default function Navbar() {
             accept: "image/*",
             "aria-label": "Upload your profile picture",
           },
+
+          button: false,
         });
 
         if (file) {
@@ -113,36 +116,28 @@ export default function Navbar() {
     });
 
     if (emailRegex.test(formValues[1])) {
-      fetch("http://localhost:3031/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: crypto.randomUUID(),
-          fullName: formValues[0],
-          email: formValues[1],
-          CREATE_AT: new Date().toLocaleDateString(),
-        }),
-      }).then((res) => {
-        if (res.ok) {
-          setFullName(formValues[0]);
-          setEmail(formValues[1]);
-          setSign(true);
-          swal({
-            icon: "success",
-            text: "Sign up complete successfully",
-            timer: 1500,
-            buttons: false,
-          });
-        }
+      setFullName(formValues[0]);
+      setEmail(formValues[1]);
+      setSign(true);
+      swal({
+        icon: "success",
+        text: "Sign up complete successfully",
+        timer: 1500,
+        buttons: false,
       });
     } else {
-      swal({
-        icon: "error",
-        title: "Email Error",
-        text: "Please write correct email address",
-      });
+      if (!formValues[0].trim() || !formValues[1].trim()) {
+        swal({
+          icon: "warning",
+          text: "Please fill both of inputs",
+        });
+      } else {
+        swal({
+          icon: "error",
+          title: "Email Error",
+          text: "Please write correct email address",
+        });
+      }
     }
   };
 
@@ -154,28 +149,12 @@ export default function Navbar() {
       buttons: true,
     }).then(async (res) => {
       if (res) {
+        contextNav.setAllTodo([]);
         setSign(false);
         setSide(false);
-        let allUser = await fetch("http://localhost:3031/users").then((res) =>
-          res.json()
-        );
-        let finUser = allUser.find((user) => user.email === email);
-        let userId = finUser.id;
-        fetch(`http://localhost:3031/users/${userId}`, {
-          method: "DELETE",
-        });
-
-        
-        const allTodo = await fetch("http://localhost:3031/todos").then((res) =>
-          res.json()
-        );
-        let allIdsTodo = allTodo.map((todo) => (todo = todo.id));
-        await allIdsTodo.forEach(
-          async (id) =>
-            await fetch(`http://localhost:3031/todos/${id}`, {
-              method: "DELETE",
-            })
-        );
+        setFullName("");
+        setEmail("");
+        setProfile("");
       }
     });
   };

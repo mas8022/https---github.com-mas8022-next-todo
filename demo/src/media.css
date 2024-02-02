@@ -3,6 +3,11 @@
     width: 36rem;
   }
 }
+@media screen and (max-width: 700px) {
+  .swal2-popup.swal2-modal.swal2-show {
+    width: 85%;
+  }
+}
 @media screen and (max-width: 500px) {
   .addTodo {
     width: 30rem;
