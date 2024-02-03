@@ -41,6 +41,10 @@ function App() {
   }, [allTodo]);
 
   useEffect(() => {
+    calPercentProgressHandler()
+  }, [allTodo.length]);
+
+  useEffect(() => {
     localStorage.setItem("percentProgres", JSON.stringify(percentProgres));
   }, [percentProgres]);
 
