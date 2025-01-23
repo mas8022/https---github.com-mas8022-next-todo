@@ -1,8 +1,30 @@
-# React + Vite
+# Todo Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+یک وب اپلیکیشن ساده برای مدیریت کارها (To-Do) که با استفاده از **Next.js** توسعه داده شده است.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## لینک دمو پروژه
+
+🌐 [مشاهده پروژه دیپلوی‌شده](https://taskmas.netlify.app)
+
+---
+
+## امکانات پروژه
+
+- **افزودن و حذف کارها**
+- **رابط کاربری ساده و کاربرپسند**
+- **ذخیره اطلاعات در حافظه محلی (local state)**
+
+---
+
+## تکنولوژی‌های استفاده‌شده
+
+- **Next.js**  
+- **React.js**  
+- **JavaScript**  
+- **HTML & CSS**
+
+---
+
+
